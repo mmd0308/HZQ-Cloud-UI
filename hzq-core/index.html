@@ -9,7 +9,7 @@
     <script type="systemjs-importmap">
       {
         "imports": {
-          "navbar": "http://localhost:8080/app.js",
+          "dashboard": "http://localhost:8080/app.js",
           "app1": "http://localhost:8081/app.js",
           "app2": "http://localhost:8082/app.js",
           "system": "http://localhost:8085/app.js",
@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-register.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/use-default.min.js"></script>
   </head>
-  <body>
+  <body style="margin: 0px;">
     <script>
       (function() {
         // See https://github.com/systemjs/systemjs/issues/1939
@@ -42,12 +42,14 @@
         }
         window.getPublicPath = function(name) {
           const url = moduleMap[name]
+          console.log('url:  ' + url)
           if (url) {
             let index = url.lastIndexOf('/js')
             if (index < 0) {
               index = url.lastIndexOf('/')
             }
             index++
+            console.log('getpublishPath: ' + url.slice(0, index))
             return url.slice(0, index);
           } else {
             throw Error(`Could not find url for module '${name}'`)
@@ -55,22 +57,26 @@
         }
         // 服务启动注册到这里
         Promise.all([System.import('single-spa'), System.import('vue'), System.import('vue-router')]).then(function (modules) {
+
           var singleSpa = modules[0];
           var Vue = modules[1];
           var VueRouter = modules[2];
+          console.log('----core------')
           Vue.use(VueRouter)
+
           // 注册应用
           singleSpa.registerApplication(
-            'navbar',
-            () => System.import('navbar'),
+            'dashboard',
+            () => System.import('dashboard'),
             //location => true
-            location => location.pathname.startsWith('/hzq')
+           // location => location.pathname.startsWith('/hzq') || location.pathname === ""
+            location => location.pathname === "" || location.pathname === "/" || location.pathname.startsWith('/') || location.pathname.startsWith('/admin')
           );
 
           singleSpa.registerApplication(
             'app1',
             () => System.import('app1'),
-            location => location.pathname.startsWith('/app1')
+            location => location.pathname.startsWith('/app1') || location.pathname.startsWith('/admin/app1')
           )
 
           singleSpa.registerApplication(
@@ -82,12 +88,14 @@
           singleSpa.registerApplication(
             'system',
             () => System.import('system'),
-            location => location.pathname.startsWith('/system')
+            location => location.pathname.startsWith('/system'),
+            {"authToken": "d83jD63UdZ6RS6f70D0" }
           )
-          
+
           singleSpa.start();
         })
       })()
+
     </script>
     <!-- See https://github.com/joeldenning/import-map-overrides#user-interface  -->
     <import-map-overrides-full show-when-local-storage="overrides-ui"></import-map-overrides-full>
