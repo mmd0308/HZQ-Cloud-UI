@@ -14,19 +14,18 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI, { locale })
 
-
 // 声明周期
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    render: (h) => h(App),
+    render: h => h(App),
     router
-  },
-});
+  }
+})
 
-export let params = null;
+export let params = null
 // 项目启动的钩子
-export const bootstrap = vueLifecycles.bootstrap;
+export const bootstrap = vueLifecycles.bootstrap
 // export function bootstrap(props) {
 //   console.log('-------- bootstrap')
 //   console.log(props)
@@ -35,7 +34,7 @@ export const bootstrap = vueLifecycles.bootstrap;
 //export const mount = vueLifecycles.mount;
 // 项目启动后的钩子
 export function mount(props) {
-  return vueLifecycles.mount(props);
+  return vueLifecycles.mount(props)
 }
 // 项目卸载的钩子
-export const unmount = vueLifecycles.unmount;
+export const unmount = vueLifecycles.unmount

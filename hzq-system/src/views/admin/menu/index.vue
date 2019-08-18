@@ -1,13 +1,15 @@
 <template>
   <div class="app-container">
+ 
     <el-col :span="5" style="padding-right:20px;">
-      <el-select v-model="applicationId" filterable placeholder="请选择应用" style="width:100%;padding-bottom:10px">
+      <el-select v-model="serveId" filterable placeholder="请选择服务" style="width:100%;padding-bottom:10px" @change="handleServeChange">
         <el-option
-          v-for="item in applicationDatas"
+          v-for="item in serveDatas"
           :key="item.id"
           :label="item.name"
           :value="item.id"/>
       </el-select>
+      
       <el-card>
         <el-tree
           v-loading="treeLoading"
@@ -20,21 +22,18 @@
           default-expand-all
           @node-click="handleNodeClick"/>
       </el-card>
-      
     </el-col>
     <el-col :span="19">
-        <menu-form />
-      <!-- <menu-form ref="form" @refreshTree="refreshTree" />
-      <button-index ref="butList" /> -->
-      <button-index />
+        <menu-form ref="menuForm" :formStatus="formStatus"  @handleRefreshTree="handleRefreshTree"/>
+        <button-index ref="butList" />
     </el-col>
   </div>
 </template>
 <script>
-//import { selectMenuTree, selectApplicationListAll } from '@/api/system/menu/index'
-
-import MenuForm from './components/menuForm'
-import ButtonIndex from '@/views/admin/button/index'
+import MenuForm from './components/form'
+import ButtonIndex from '@/views/admin/element/index'
+import { serveList } from '@/api/serve/index'
+import { tree } from '@/api/menu/index'
 export default {
   components: {
     MenuForm,
@@ -42,56 +41,50 @@ export default {
   },
   data() {
     return {
+      serveDatas: [],
       treeProps: {
-        label: 'label'
+        label: 'name',
       },
-      treeDate: [{
-          label: '一级 1',
-          children: [{
-            label: '二级 1-1',
-            children: [{
-              label: '三级 1-1-1'
-            }]
-          }]
-        }, {
-          label: '一级 2',
-          children: [{
-            label: '二级 2-1',
-            children: [{
-              label: '三级 2-1-1'
-            }]
-          }, {
-            label: '二级 2-2',
-            children: [{
-              label: '三级 2-2-1'
-            }]
-          }]
-        }, {
-          label: '一级 3',
-          children: [{
-            label: '二级 3-1',
-            children: [{
-              label: '三级 3-1-1'
-            }]
-          }, {
-            label: '二级 3-2',
-            children: [{
-              label: '三级 3-2-1'
-            }]
-          }]
-        }],
+      formStatus: 'see',
+      treeDate: [],
       treeLoading: false,
-      applicationDatas: [
-          {id:1,name:1}
-      ],
-      applicationId: '',
+      serveId: '',
       top: false
     }
   },
   created() {
+    this.handlerServerQuery()
   },
   methods: {
-  
+    handlerServerQuery(){
+      serveList(null).then(res => {
+          this.serveDatas = res.attributes
+          // 选中第一个
+          this.serveId = res.attributes[0].id
+          // 加载菜单
+          this.handlerMenuTree()
+      })
+    },
+    handleServeChange(){
+      this.handlerMenuTree()
+    },
+    handlerMenuTree(){
+      tree(this.serveId).then(res => {
+          this.treeDate = res.attributes
+          this.top = true
+          // 加载完成数据,默认查看第一个
+          this.handleNodeClick(this.treeDate[0])
+          this.top = false
+      })
+    },
+    handleNodeClick(data) {
+      // 更新右边查看菜单项目
+      this.$refs.menuForm.seeMenu(data,this.serveId,this.top)
+      this.$refs.butList.getMenuId(data.id)
+    },
+    handleRefreshTree() {
+      this.handlerMenuTree()
+    }
   }
 }
 </script>

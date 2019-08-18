@@ -1,4 +1,6 @@
+import Vue from 'vue'
 import Router from 'vue-router'
+Vue.use(Router)
 
 export const constantRoutes = [
   {
@@ -17,7 +19,6 @@ export const constantRoutes = [
     path: '/serve',
     component: () => import('@/views/admin/serve/index')
   }
-
 ]
 export default new Router({
   mode: 'history',
