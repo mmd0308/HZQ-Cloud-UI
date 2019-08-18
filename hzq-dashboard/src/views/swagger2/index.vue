@@ -2,7 +2,7 @@
   <div>
     <iframe
       id="show"
-      :src="url"
+      src="http://localhost:10600/swagger-ui.html"
       width="100%"
       height="900px"
       frameborder="0"

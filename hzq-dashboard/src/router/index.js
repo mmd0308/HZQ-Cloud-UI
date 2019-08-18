@@ -32,8 +32,13 @@ export const constantRoutes = [
   {
     path: '/admin/system',
     component: Layout,
-    meta: { title: '系统管理', icon: 'example' },
+    meta: { title: '平台管理', icon: 'example' },
     children: [
+      {
+        path: 'swagger2',
+        component: () => import('@/views/swagger2/index'),
+        meta: { title: '接口文档', icon: 'tree' }
+      },
       {
         path: 'role',
         component: () => import('@/views/system/index'),
@@ -57,9 +62,11 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/admin/tools', component: Layout,
+    path: '/admin/tools',
+    component: Layout,
     children: [
-      { path: 'icons',
+      {
+        path: 'icons',
         name: 'Icons',
         component: () => import('@/views/tools/icons/svg/index'),
         meta: { title: 'Icons', icon: 'app-1' }
@@ -143,7 +150,6 @@ export const constantRoutes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
   // }
-
 ]
 
 export default new Router({
