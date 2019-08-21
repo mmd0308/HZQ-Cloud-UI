@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-const path = '/base/v1/users'
+const path = '/api/base/v1/users'
 
 export function page(params) {
   return request({
-    url: '/base/v1/users/page/' + params.pageNum + '/' + params.pageSize,
+    url: path + '/page/' + params.pageNum + '/' + params.pageSize,
     method: 'get'
   })
 }
@@ -12,7 +12,8 @@ export function page(params) {
 export function pageByRoleId(params) {
   return request({
     url:
-      '/base/v1/users/page/role/' +
+      path +
+      '/page/role/' +
       params.pageNum +
       '/' +
       params.pageSize +
@@ -25,7 +26,8 @@ export function pageByRoleId(params) {
 export function pageNotByRoleId(params) {
   return request({
     url:
-      '/base/v1/users/page/role/not/' +
+      path +
+      '/page/role/not/' +
       params.pageNum +
       '/' +
       params.pageSize +
@@ -37,7 +39,7 @@ export function pageNotByRoleId(params) {
 
 export function listByRoleId(id) {
   return request({
-    url: '/base/v1/users/role/' + id,
+    url: '/api/base/v1/users/role/' + id,
     method: 'get'
   })
 }

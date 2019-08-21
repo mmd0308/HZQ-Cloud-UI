@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const path = '/base/v1/roles'
+const path = '/api/base/v1/roles'
 
 export function page(params) {
   return request({

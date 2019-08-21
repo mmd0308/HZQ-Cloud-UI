@@ -1,22 +1,24 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 //import store from '@/store'
-//import { getToken } from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 
 const service = axios.create({
-  baseURL: 'http://localhost:10600',
-  // withCredentials: true, // send cookies when cross-domain requests
+  baseURL: 'http://localhost:9000',
+  //withCredentials: true, // send cookies when cross-domain requests
   timeout: 30000 // request timeout
 })
 
 // request interceptor
 service.interceptors.request.use(
   config => {
-    // if (store.getters.token) {
-    //   config.headers['X-Token'] = getToken()
-    // }
-    // config.header["Access-Control-Allow-Origin"] =  "*"
-    // config.header["Access-Control-Allow-Headers"] =  "*";
+    const isToken = (config.headers || {}).isToken === false
+    const token = getToken()
+    console.log(token)
+    console.log(isToken)
+    if (token && !isToken) {
+      config.headers['Authorization'] = 'Bearer ' + getToken() // token
+    }
     return config
   },
   error => {

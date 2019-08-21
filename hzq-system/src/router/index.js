@@ -18,6 +18,10 @@ export const constantRoutes = [
   {
     path: '/serve',
     component: () => import('@/views/admin/serve/index')
+  },
+  {
+    path: '/log/login',
+    component: () => import('@/views/admin/log/loginLog')
   }
 ]
 export default new Router({
