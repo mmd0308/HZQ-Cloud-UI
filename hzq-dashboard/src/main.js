@@ -13,6 +13,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/zh-CN'
 
 import '@/icons' // icon
+import './permission' // 权限控制
 
 Vue.config.productionTip = false
 
@@ -23,8 +24,8 @@ const vueLifecycles = singleSpaVue({
   appOptions: {
     store,
     router,
-    render: (h) => h(App),
-    'arguments': 'dashborad-paramestes'
+    render: h => h(App),
+    arguments: 'dashborad-paramestes'
   }
 })
 vueLifecycles.arguments = 'llll'

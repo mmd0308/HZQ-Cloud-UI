@@ -1,16 +1,18 @@
 import { login } from '@/api/login/index'
-// import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
 const state = {
-  // token: getToken(),
+  access_token: getToken(),
   name: '',
   avatar: ''
 }
 
 const mutations = {
-  SET_TOKEN: (state, token) => {
-    state.token = token
+  SET_ACCESS_TOKEN: (state, access_token) => {
+    state.access_token = access_token
+    // 将token存储到cookie中
+    setToken(access_token)
   },
   SET_NAME: (state, name) => {
     state.name = name
@@ -23,15 +25,13 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    debugger
     const username = userInfo.username.trim()
     return new Promise((resolve, reject) => {
       login(username, userInfo.password)
         .then(response => {
-          // const { data } = response
-          console.log('---login response' + response)
-          // commit('SET_TOKEN', data.token)
-          // setToken(data.token)
+          commit('SET_ACCESS_TOKEN', response.access_token)
+          // commit('SET_REFRESH_TOKEN', response.refresh_token)
+          // commit('SET_EXPIRES_IN', response.expires_in)
           resolve()
         })
         .catch(error => {
