@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-container">
     <div> dashboard </div>
+    <el-button type="primary" @click="toAdmin">后端管理系统</el-button>
     <!-- <div class="dashboard-text">name: {{ name }}</div> -->
   </div>
 </template>
@@ -11,8 +12,13 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Dashboard',
   computed: {
-    ...mapGetters([
-    ])
+    ...mapGetters([])
+  },
+
+  method: {
+    toAdmin() {
+      alert('l')
+    }
   }
 }
 </script>

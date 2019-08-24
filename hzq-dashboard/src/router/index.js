@@ -58,6 +58,11 @@ export const constantRoutes = [
         path: 'serve',
         component: () => import('@/views/system/index'),
         meta: { title: '服务管理', icon: 'tree' }
+      },
+      {
+        path: 'log/login',
+        component: () => import('@/views/system/index'),
+        meta: { title: '登陆日志', icon: 'tree' }
       }
     ]
   },
