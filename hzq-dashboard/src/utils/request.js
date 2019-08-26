@@ -4,7 +4,7 @@ import store from '@/store'
 import { getToken } from '@/utils/auth'
 
 const service = axios.create({
-  baseURL: 'http://localhost:10680',
+  baseURL: 'http://localhost:9000',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 30000 // request timeout
 })

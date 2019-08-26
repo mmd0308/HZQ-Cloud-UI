@@ -24,7 +24,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         name: 'Login',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/admin/dashboard/index'),
         meta: { title: '首页', icon: 'tree' }
       }
     ]

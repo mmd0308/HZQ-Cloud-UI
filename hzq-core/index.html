@@ -10,8 +10,6 @@
       {
         "imports": {
           "dashboard": "http://localhost:10800/app.js",
-          "app1": "http://localhost:8081/app.js",
-          "app2": "http://localhost:8082/app.js",
           "hzq-system": "http://localhost:10805/app.js",
           "single-spa": "/static/utils/js/single-spa.min.js",
           "vue": "/static/utils/js/vue.js",
@@ -19,63 +17,23 @@
         }
       }
     </script>
-    <!-- 
-      "imports": {
-          "dashboard": "http://localhost:8080/app.js",
-          "app1": "http://localhost:8081/app.js",
-          "app2": "http://localhost:8082/app.js",
-          "system": "http://localhost:8085/app.js",
-          "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.7/system/single-spa.min.js",
-          "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
-          "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js"
-        }
-        " single-spa": "./src/assets/js/single-spa.min.js",
-          "vue": "./src/assets/js/vue.js",
-          "vue-router": "./src/assets/js/vue-router.min.js"
-
-     -->
-    <!-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.7/system/single-spa.min.js" as="script" crossorigin="anonymous" /> -->
     <link
       rel="preload"
       href="/static/utils/js/single-spa.min.js"
       as="script"
       crossorigin="anonymous"
     />
-
-    <!-- <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"
-      as="script"
-      crossorigin="anonymous"
-    /> -->
     <link
       rel="preload"
       href="/static/utils/js/vue.js"
       as="script"
       crossorigin="anonymous"
     />
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/system.min.js"></script> -->
     <script src="/static/utils/js/system.min.js"></script>
     <script src="/static/utils/js/amd.min.js"></script>
     <script src="/static/utils/js/named-exports.js"></script>
     <script src="/static/utils/js/named-register.min.js"></script>
     <script src="/static/utils/js/use-default.min.js"></script>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/amd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-exports.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-register.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/use-default.min.js"></script> -->
-
-    <!-- <script src="https://unpkg.com/import-map-overrides@1.7.2/dist/import-map-overrides.js"></script> -->
-
-    <!-- <link rel="preload" href="./src/assets/js/single-spa.min.js" as="script" crossorigin="anonymous" />
-    <link rel="preload" href="./src/assets/js/vue.js" as="script" crossorigin="anonymous" />
-    <script src="./src/assets/js/system.min.js"></script>
-    <script src="./src/assets/js/amd.min.js"></script>
-    <script src="./src/assets/js/named-exports.js"></script>
-    <script src="./src/assets/js/named-register.min.js"></script>
-    <script src="./src/assets/js/use-default.min.js"></script> -->
   </head>
   <body style="margin: 0px;">
     <script>
@@ -125,19 +83,19 @@
               location.pathname.startsWith('/admin')
           )
 
-          singleSpa.registerApplication(
-            'app1',
-            () => System.import('app1'),
-            location =>
-              location.pathname.startsWith('/app1') ||
-              location.pathname.startsWith('/admin/app1')
-          )
+          // singleSpa.registerApplication(
+          //   'app1',
+          //   () => System.import('app1'),
+          //   location =>
+          //     location.pathname.startsWith('/app1') ||
+          //     location.pathname.startsWith('/admin/app1')
+          // )
 
-          singleSpa.registerApplication(
-            'app2',
-            () => System.import('app2'),
-            location => location.pathname.startsWith('/app2')
-          )
+          // singleSpa.registerApplication(
+          //   'app2',
+          //   () => System.import('app2'),
+          //   location => location.pathname.startsWith('/app2')
+          // )
           singleSpa.registerApplication(
             'hzq-system',
             () => System.import('hzq-system'),

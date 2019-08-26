@@ -16,6 +16,7 @@
     "nprogress": "0.2.0",
     "single-spa-vue": "^1.5.4",
     "vue": "^2.6.10",
+    "vue-avatar": "^2.1.7",
     "vue-router": "^3.1.1",
     "vuex": "3.1.0"
   },

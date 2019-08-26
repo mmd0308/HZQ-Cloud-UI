@@ -3,11 +3,10 @@ export function login(username, password) {
   const grant_type = 'password'
 
   return request({
-    url: '/oauth/token',
+    url: '/api/auth/oauth/token',
     method: 'post',
     headers: {
-      Authorization:
-        'Basic aHpxLWNsb3VkLXVpOjU5MjQyZWE0MTA0MDkyYzUxMGQyNGEwODgyYjk2Njlk'
+      Authorization: 'Basic aHpxLWNsb3VkLXVpOnd3dy5oenFpbmcuY29t'
     },
     params: {
       username,

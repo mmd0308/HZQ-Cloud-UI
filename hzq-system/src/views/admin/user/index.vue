@@ -39,24 +39,24 @@
 </template>
 
   <script>
-import { page } from "@/api/user/index";
-import { deleteById } from "@/api/common/index";
-import EditUser from "./components/form";
+import { page } from '@/api/user/index'
+import { deleteById } from '@/api/common/index'
+import EditUser from './components/form'
 export default {
   data() {
     return {
-      moudle: "users",
+      moudle: 'users',
       pageQuery: {
         pageNum: 1,
         pageSize: 10,
-        username: ""
+        username: ''
       },
       total: 0,
       tableData: []
-    };
+    }
   },
   created() {
-    this.handlePage();
+    this.handlePage()
   },
   components: {
     EditUser
@@ -64,41 +64,41 @@ export default {
   methods: {
     handlePage() {
       page(this.pageQuery).then(res => {
-        this.tableData = res.attributes.records;
-        this.total = res.attributes.total;
-      });
+        this.tableData = res.attributes.records
+        this.total = res.attributes.total
+      })
     },
     handleCreate() {
-      this.$refs["dataForm"].handleCreate();
+      this.$refs['dataForm'].handleCreate()
     },
     handleUpdate(row) {
-      this.$refs["dataForm"].handleUpdate(row);
+      this.$refs['dataForm'].handleUpdate(row)
     },
     handleDelete(id) {
-      this.$confirm("此操作将永久删除?", "删除警告", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        typr: "warning"
+      this.$confirm('此操作将永久删除?', '删除警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        typr: 'warning'
       }).then(() => {
         deleteById(this.moudle, id).then(() => {
-          this.refreshList();
-        });
-      });
+          this.refreshList()
+        })
+      })
     },
     refreshList() {
-      this.handlePage();
+      this.handlePage()
     },
     handleSizeChange(val) {
-      this.pageQuery.pageSize = val;
-      this.handlePage();
+      this.pageQuery.pageSize = val
+      this.handlePage()
     },
     handleCurrentChange(val) {
-      this.pageQuery.pageNum = val;
-      this.handlePage();
+      this.pageQuery.pageNum = val
+      this.handlePage()
     },
     handleFilter() {
-      this.handlePage();
+      this.handlePage()
     }
   }
-};
+}
 </script>
