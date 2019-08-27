@@ -1,5 +1,8 @@
 # HZQ-Cloud-UI
 
+
+## 项目演示地址: [http://hcloud.hn3.mofasuidao.cn](http://hcloud.hn3.mofasuidao.cn)
+
 ## 前端服务结构
 
 - `hzq-core`: 18080
