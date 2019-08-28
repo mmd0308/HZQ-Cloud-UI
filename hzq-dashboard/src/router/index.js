@@ -63,6 +63,11 @@ export const constantRoutes = [
         path: 'log/login',
         component: () => import('@/views/system/index'),
         meta: { title: '登陆日志', icon: 'tree' }
+      },
+      {
+        path: 'log/operation',
+        component: () => import('@/views/system/index'),
+        meta: { title: '操作日志', icon: 'tree' }
       }
     ]
   },

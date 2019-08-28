@@ -22,7 +22,12 @@ export const constantRoutes = [
   {
     path: '/log/login',
     component: () => import('@/views/admin/log/loginLog')
+  },
+  {
+    path: '/log/operation',
+    component: () => import('@/views/admin/log/operationLog')
   }
+
 ]
 export default new Router({
   mode: 'history',
