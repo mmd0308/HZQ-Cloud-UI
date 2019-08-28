@@ -7,7 +7,7 @@
         <el-button size="small" type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
       </div>
     </div>
-    <el-table :data="tableData" fit highlight-current-row style="width: 100%">
+    <el-table :data="tableData" fit v-loading="tableLoading" highlight-current-row style="width: 100%">
       <el-table-column prop="username" label="登录名称">
       </el-table-column>
       <el-table-column prop="phone" label="电话">
@@ -25,8 +25,8 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button size="mini" type="success" icon="el-icon-edit" @click="handleUpdate(row)"></el-button>
-          <el-button size="mini" type="danger" icon="el-icon-delete" @click="handleDelete(row.id)"></el-button>
+          <el-button size="small" type="success" icon="el-icon-edit" @click="handleUpdate(row)"></el-button>
+          <el-button size="small" type="danger" icon="el-icon-delete" @click="handleDelete(row.id)"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       moudle: 'users',
+      tableLoading: false,
       pageQuery: {
         pageNum: 1,
         pageSize: 10,
@@ -63,9 +64,11 @@ export default {
   },
   methods: {
     handlePage() {
+      this.tableLoading = true
       page(this.pageQuery).then(res => {
         this.tableData = res.attributes.records
         this.total = res.attributes.total
+        this.tableLoading = false
       })
     },
     handleCreate() {

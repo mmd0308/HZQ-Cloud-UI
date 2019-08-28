@@ -6,7 +6,7 @@
         <el-button size="small" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
       </div>
     </div>
-    <el-table :data="tableData" fit highlight-current-row style="width: 100%">
+    <el-table :data="tableData" fit v-loading="tableLoading" highlight-current-row style="width: 100%">
       <el-table-column prop="loginName" label="请求账号" width="120" />
       <el-table-column prop="ip" label="登陆IP" width="150" />
       <el-table-column prop="url" label="请求路径" />
@@ -25,6 +25,7 @@ import { OperationLogPage } from '@/api/log/index'
 export default {
   data() {
     return {
+      tableLoading: false,
       pageQuery: {
         pageNum: 1,
         pageSize: 10
@@ -38,9 +39,11 @@ export default {
   },
   methods: {
     handlePage() {
+      this.tableLoading = true
       OperationLogPage(this.pageQuery).then(res => {
         this.tableData = res.attributes.records
         this.total = res.attributes.total
+        this.tableLoading = false
       })
     },
     handleSizeChange(val) {
