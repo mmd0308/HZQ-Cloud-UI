@@ -7,12 +7,12 @@
       </div>
     </div>
     <el-table :data="tableData" fit v-loading="tableLoading" highlight-current-row style="width: 100%">
-      <el-table-column prop="loginName" label="登陆账号" />
-      <el-table-column prop="ip" label="登陆IP" />
-      <el-table-column prop="browser" label="访问浏览器" />
-      <el-table-column prop="os" label="操作系统" />
+      <el-table-column prop="loginName" label="登陆账号" width="150" />
+      <el-table-column prop="ip" label="登陆IP" width="150" />
+      <el-table-column prop="browser" label="访问浏览器" width="200" />
+      <el-table-column prop="os" label="操作系统" width="200" />
       <el-table-column prop="msg" label="提示信息" />
-      <el-table-column prop="createTime" label="登陆时间" />
+      <el-table-column prop="createTime" label="登陆时间" width="170" />
     </el-table>
     <div class="pagination-container">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageQuery.pageNum" :page-sizes="[10, 20, 30, 40]" :page-size="pageQuery.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
