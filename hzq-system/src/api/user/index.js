@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const path = '/api/base/v1/users'
+const path = '/api/system/v1/users'
 
 export function page(params) {
   return request({
@@ -39,7 +39,7 @@ export function pageNotByRoleId(params) {
 
 export function listByRoleId(id) {
   return request({
-    url: '/api/base/v1/users/role/' + id,
+    url: '/api/system/v1/users/role/' + id,
     method: 'get'
   })
 }

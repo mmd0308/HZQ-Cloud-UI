@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const path = '/api/base/v1/'
+const path = '/api/system/v1/'
 
 export function list(moudle, params) {
   return request({

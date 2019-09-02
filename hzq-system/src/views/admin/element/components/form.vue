@@ -21,78 +21,78 @@
 </template>
 
 <script>
-import { create, update } from "@/api/common/index";
+import { create, update } from '@/api/common/index'
 export default {
   data() {
     return {
-      moudle: "elements",
+      moudle: 'elements',
       dialogVisible: false,
-      formStatus: "create",
-      dialogTitle: "",
+      formStatus: 'create',
+      dialogTitle: '',
       dataForm: this.initForm(),
-      dataFormRef: "dataFormRef",
+      dataFormRef: 'dataFormRef',
       rules: {
-        name: [{ required: true, trigger: "blur", message: "名称不能唯空!" }]
+        name: [{ required: true, trigger: 'blur', message: '名称不能唯空!' }]
       }
-    };
+    }
   },
   methods: {
     initForm() {
       return {
         id: null,
-        name: "",
-        permission: "",
-        href: "",
-        menuId: ""
-      };
+        name: '',
+        permission: '',
+        href: '',
+        menuId: ''
+      }
     },
     handleCreate(menuId) {
-      this.dialogVisible = true;
-      this.dialogTitle = "创建资源";
-      this.resetForm();
-      this.dataForm.menuId = menuId;
+      this.dialogVisible = true
+      this.dialogTitle = '创建资源'
+      this.resetForm()
+      this.dataForm.menuId = menuId
     },
     handleUpdate(row) {
-      this.dialogVisible = true;
-      this.dialogTitle = "更新资源";
-      this.formStatus = "update";
-      this.resetForm();
-      this.dataForm = row;
+      this.dialogVisible = true
+      this.dialogTitle = '更新资源'
+      this.formStatus = 'update'
+      this.resetForm()
+      this.dataForm = row
     },
     createData() {
       this.$refs[this.dataFormRef].validate(validate => {
         if (validate) {
           create(this.moudle, this.dataForm).then(() => {
-            this.handleCancel();
-          });
+            this.handleCancel()
+          })
         } else {
-          return false;
+          return false
         }
-      });
+      })
     },
     updateData() {
       this.$refs[this.dataFormRef].validate(validate => {
         if (validate) {
           update(this.moudle, this.dataForm).then(() => {
-            this.handleCancel();
-          });
+            this.handleCancel()
+          })
         } else {
-          return false;
+          return false
         }
-      });
+      })
     },
     resetForm() {
-      this.dataForm = this.initForm();
+      this.dataForm = this.initForm()
     },
     updateForm(row) {
-      this.dataForm = row;
+      this.dataForm = row
     },
     handleCancel() {
-      this.dialogVisible = false;
-      this.$emit("refreshList");
+      this.dialogVisible = false
+      this.$emit('refreshList')
     }
   }
-};
+}
 </script>
 
 <style>

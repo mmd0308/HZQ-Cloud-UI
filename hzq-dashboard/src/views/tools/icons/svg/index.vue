@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted() {
-    const iconsMap = icons.state.iconsMap.map((i) => {
+    const iconsMap = icons.state.iconsMap.map(i => {
       return i.default.id.substring(5)
     })
     this.iconsMap = iconsMap
@@ -45,7 +45,8 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .icons-container {
   margin: 10px 20px 0;
-  overflow: hidden;
+  overflow: auto;
+  height: 900px;
   .icons-wrapper {
     margin: 0 auto;
   }
@@ -64,7 +65,7 @@ export default {
     font-size: 24px;
     margin-top: 10px;
   }
-  .disabled{
+  .disabled {
     pointer-events: none;
   }
 }

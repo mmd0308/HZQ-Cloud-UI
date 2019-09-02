@@ -29,141 +29,28 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
-    path: '/admin/system',
+    path: '/admin/tools',
     component: Layout,
-    meta: { title: '平台管理', icon: 'example' },
+    meta: { title: '系统工具', icon: 'tree' },
     children: [
+      {
+        path: 'icons',
+        component: () => import('@/views/tools/icons/svg/index'),
+        meta: { title: 'Icons', icon: 'app-1' }
+      },
       {
         path: 'swagger2',
         component: () => import('@/views/swagger2/index'),
         meta: { title: '接口文档', icon: 'tree' }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/system/index'),
-        meta: { title: '角色管理', icon: 'tree' }
-      },
-      {
-        path: 'menu',
-        component: () => import('@/views/system/index'),
-        meta: { title: '菜单管理', icon: 'tree' }
-      },
-      {
-        path: 'user',
-        component: () => import('@/views/system/index'),
-        meta: { title: '用户管理', icon: 'tree' }
-      },
-      {
-        path: 'serve',
-        component: () => import('@/views/system/index'),
-        meta: { title: '服务管理', icon: 'tree' }
-      },
-      {
-        path: 'log/login',
-        component: () => import('@/views/system/index'),
-        meta: { title: '登陆日志', icon: 'tree' }
-      },
-      {
-        path: 'log/operation',
-        component: () => import('@/views/system/index'),
-        meta: { title: '操作日志', icon: 'tree' }
-      }
-    ]
-  },
-  {
-    path: '/admin/tools',
-    component: Layout,
-    children: [
-      {
-        path: 'icons',
-        name: 'Icons',
-        component: () => import('@/views/tools/icons/svg/index'),
-        meta: { title: 'Icons', icon: 'app-1' }
       }
     ]
   }
-
-  // {
-  //   path: '/hzq/login',
-  //   component: () => import('@/views/login/index')
-  // },
-  // {
-  //   path: '/hzq/dashboard',
-  //   component: () => import('@/views/dashboard/index')
-  // }
-
-  // {
-  //   path: '/hzq',
-  //   component: Layout,
-  //   children: [{
-  //     path: 'dashboard',
-  //     name: 'Login',
-  //     component: () => import('@/views/dashboard/index'),
-  //     meta: { title: 'dashboard', icon: 'tree' }
-  //   }
-
-  //   ]
-  // },
-  // {
-  //   path: '/hzq/sys',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'system',
-  //       component: () => import('@/views/system/index'),
-  //       meta: { title: '系统管理', icon: 'link' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: '/hzq/example',
-  //   component: Layout,
-  //   redirect: '/example/table',
-  //   name: 'Example',
-  //   meta: { title: 'Example', icon: 'example' },
-  //   children: [
-  //     {
-  //       path: 'table',
-  //       name: 'Table',
-  //       component: () => import('@/views/test/index'),
-  //       meta: { title: 'Table', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'tree',
-  //       name: 'Tree',
-  //       component: () => import('@/views/test/index'),
-  //       meta: { title: 'Tree', icon: 'tree' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: '/hzq/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Form',
-  //       component: () => import('@/views/test/index'),
-  //       meta: { title: 'Form', icon: 'app-1' }
-  //     }
-  //   ]
-  // }
-
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-  // }
 ]
-
+import { constantSystemRoutes } from './system'
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: constantRoutes
+  routes: constantRoutes.concat(constantSystemRoutes)
 })

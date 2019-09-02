@@ -8,14 +8,11 @@
       </div>
     </div>
     <el-table :data="tableData" fit v-loading="tableLoading" highlight-current-row style="width: 100%">
-      <el-table-column prop="name" label="服务名称">
-      </el-table-column>
-      <el-table-column prop="status" label="服务状态">
-      </el-table-column>
-      <el-table-column prop="create_time" label="创建时间">
-      </el-table-column>
-      <el-table-column prop="update_time" label="更新时间">
-      </el-table-column>
+      <el-table-column prop="name" label="服务名称" />
+      <el-table-column prop="status" label="服务状态" />
+      <el-table-column prop="permission" label="权限编码" />
+      <el-table-column prop="create_time" label="创建时间" />
+      <el-table-column prop="update_time" label="更新时间" />
       <el-table-column label="操作" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button size="small" type="success" icon="el-icon-edit" @click="handleUpdate(row)"></el-button>
