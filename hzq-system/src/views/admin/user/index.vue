@@ -19,9 +19,9 @@
           <el-tag v-else type="warning">女</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="create_time" label="创建时间">
+      <el-table-column prop="createTime" label="创建时间">
       </el-table-column>
-      <el-table-column prop="update_time" label="更新时间">
+      <el-table-column prop="updateTime" label="更新时间">
       </el-table-column>
       <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
         <template slot-scope="{row}">

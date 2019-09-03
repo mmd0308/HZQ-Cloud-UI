@@ -49,8 +49,9 @@ export const constantRoutes = [
   }
 ]
 import { constantSystemRoutes } from './system'
+import { constantLogRoutes } from './log'
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: constantRoutes.concat(constantSystemRoutes)
+  routes: constantRoutes.concat(constantSystemRoutes).concat(constantLogRoutes)
 })

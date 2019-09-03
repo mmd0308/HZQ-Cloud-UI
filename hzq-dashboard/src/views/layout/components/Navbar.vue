@@ -7,8 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <!-- <img src="imageView2/1/w/80/h/80" class="user-avatar"> -->
-          <avatar username="Jane Doe" :size="40" />
+          <avatar username="HZQING" :size="40" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">

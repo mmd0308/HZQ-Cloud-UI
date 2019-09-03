@@ -9,3 +9,11 @@ export function tree(params) {
     params: { serveId: params }
   })
 }
+
+export function checkPermission(params) {
+  return request({
+    url: path + '/permission/' + params.permission,
+    method: 'get',
+    params: { id: params.id }
+  })
+}

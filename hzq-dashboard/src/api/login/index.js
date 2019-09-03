@@ -1,7 +1,6 @@
 import request from '@/utils/request'
 export function login(username, password) {
   const grant_type = 'password'
-
   return request({
     url: '/api/auth/oauth/token',
     method: 'post',
@@ -13,5 +12,12 @@ export function login(username, password) {
       password,
       grant_type: grant_type
     }
+  })
+}
+// 获取用户信息
+export function getUserInfo() {
+  return request({
+    url: '/api/auth/auth/info',
+    method: 'get'
   })
 }

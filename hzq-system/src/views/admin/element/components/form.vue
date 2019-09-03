@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="50%" :before-close="handleClose">
+  <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="50%">
     <div>
       <el-form :ref="dataFormRef" :rules="rules" :model="dataForm" label-position="left" label-width="120px" style="margin:0px 50px;">
         <el-form-item label="按钮名称" prop="name">

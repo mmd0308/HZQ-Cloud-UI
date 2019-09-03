@@ -41,10 +41,10 @@
 </template>
 
   <script>
-import { deleteById,page } from '@/api/common/index'
+import { deleteById, page } from '@/api/common/index'
 import DataForm from './components/form'
 export default {
-  data () {
+  data() {
     return {
       moudle: 'elements',
       pageQuery: {
@@ -62,51 +62,47 @@ export default {
     DataForm
   },
   methods: {
-    getMenuId(id){
+    getMenuId(id) {
       // 获取菜单id
       this.menuId = id
       this.pageQuery.menuId = id
       this.handlePage()
     },
-    handlePage () {
-      page(this.moudle,this.pageQuery).then(res => {
+    handlePage() {
+      page(this.moudle, this.pageQuery).then(res => {
         this.tableData = res.attributes.records
         this.total = res.attributes.total
       })
     },
-    handleCreate () {
+    handleCreate() {
       this.$refs['dataForm'].handleCreate(this.menuId)
     },
     handleUpdate(row) {
       this.$refs['dataForm'].handleUpdate(row)
     },
-        handleDelete(id) {
+    handleDelete(id) {
       this.$confirm('此操作将永久删除?', '删除警告', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         typr: 'warning'
       }).then(() => {
-        deleteById(this.moudle,id).then(() => {
+        deleteById(this.moudle, id).then(() => {
           this.refreshList()
         })
       })
     },
-    handleClose () {
-        this.handlePage();
-        this.dialogVisible = false
-    },
-    handleSizeChange (val) {
+    handleSizeChange(val) {
       this.pageQuery = val
       this.pageRequest()
     },
-    handleCurrentChange (val) {
+    handleCurrentChange(val) {
       this.pageNum = val
       this.pageRequest()
     },
-    handleFilter () {
-      this.pageRequest();
+    handleFilter() {
+      this.pageRequest()
     },
-    refreshList () {
+    refreshList() {
       this.handlePage()
     }
   }

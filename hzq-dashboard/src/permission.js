@@ -22,30 +22,25 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      // 判断该用户用户的角色
-      next()
-      // const hasRoles = store.getters.roles && store.getters.roles.length > 0
-      // if (hasRoles) {
+      // 判断该用户拥有的权限
+      console.log(store.getters.permissions)
+      const hasPerms = store.getters.permissions && store.getters.permissions.length > 0
+      // if (hasPerms) {
+      //   // 如果有权限,直接next
       //   next()
       // } else {
-      //   try {
-      //     // const { roles } = await store.dispatch('user/getInfo')
-
-      //     // const accessRoutes = await store.dispatch(
-      //     //   'permission/generateRoutes',
-      //     //   roles
-      //     // )
-      //     // router.addRoutes(accessRoutes)
-
-      //     next({ ...to, replace: true })
-      //   } catch (error) {
-      //     // remove token and go to login page to re-login
-      //     await store.dispatch('user/resetToken')
-      //     Message.error(error || 'Has Error')
-      //     next(`/login?redirect=${to.path}`)
-      //     NProgress.done()
-      //   }
+      //   console.log(store)
+      //   store.dispatch('user/GetUserInfo').then(res => {
+      //     // 拉取用户信息
+      //     next()
+      //   }).catch((err) => {
+      //     store.dispatch('FedLogOut').then(() => {
+      //       Message.error(err || 'Verification failed, please login again')
+      //       next({ path: '/' })
+      //     })
+      //   })
       // }
+      next()
     }
   } else {
     // token 不存在,判断是否在白名单中

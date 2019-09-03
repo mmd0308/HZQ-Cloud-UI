@@ -1,11 +1,12 @@
-import { login } from '@/api/login/index'
+import { login, getUserInfo } from '@/api/login/index'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
 const state = {
   access_token: getToken(),
   name: '',
-  avatar: ''
+  avatar: '',
+  permissions: []
 }
 
 const mutations = {
@@ -19,16 +20,19 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_PERMISSIONS: (state, permissions) => {
+    state.permissions = permissions
   }
 }
 
 const actions = {
-  // user login
   login({ commit }, userInfo) {
     const username = userInfo.username.trim()
     return new Promise((resolve, reject) => {
       login(username, userInfo.password)
         .then(response => {
+          debugger
           commit('SET_ACCESS_TOKEN', response.access_token)
           // commit('SET_REFRESH_TOKEN', response.refresh_token)
           // commit('SET_EXPIRES_IN', response.expires_in)
@@ -40,22 +44,21 @@ const actions = {
     })
   },
 
-  // get user info
-  getInfo({ commit, state }) {
+  //  根据token获取用户的信息
+  GetUserInfo({ commit }) {
+    debugger
     return new Promise((resolve, reject) => {
-      getInfo(state.token)
+      getUserInfo()
         .then(response => {
+          debugger
           const { data } = response
-
           if (!data) {
             reject('Verification failed, please Login again.')
+            const { name, avatar } = data
+            commit('SET_NAME', name)
+            commit('SET_AVATAR', avatar)
+            resolve(data)
           }
-
-          const { name, avatar } = data
-
-          commit('SET_NAME', name)
-          commit('SET_AVATAR', avatar)
-          resolve(data)
         })
         .catch(error => {
           reject(error)
@@ -63,21 +66,20 @@ const actions = {
     })
   },
 
-  // user logout
-  logout({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token)
-        .then(() => {
-          commit('SET_TOKEN', '')
-          removeToken()
-          resetRouter()
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
-  },
+  // logout({ commit, state }) {
+  //   return new Promise((resolve, reject) => {
+  //     logout(state.token)
+  //       .then(() => {
+  //         commit('SET_TOKEN', '')
+  //         removeToken()
+  //         resetRouter()
+  //         resolve()
+  //       })
+  //       .catch(error => {
+  //         reject(error)
+  //       })
+  //   })
+  // },
 
   // remove token
   resetToken({ commit }) {
